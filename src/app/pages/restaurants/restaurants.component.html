@@ -1,0 +1,31 @@
+<div class="page-container">
+
+  <app-header></app-header>
+
+
+  <section class="restaurants-grid">
+
+    <div
+      class="restaurant-card"
+      *ngFor="let restaurant of restaurants"
+    >
+
+      <img [src]="restaurant.image" alt="restaurant" />
+
+      <div class="card-body">
+        <h3>{{ restaurant.name }}</h3>
+        <p class="cuisine">{{ restaurant.cuisine }}</p>
+
+        <div class="meta">
+          <span class="rating">⭐ {{ restaurant.rating }}</span>
+          <button (click)="viewMenu(restaurant.id)">
+            View Menu
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

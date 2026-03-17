@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<div class="menu-page">
+
+  <div class="content">
+
+    <!-- MENU LIST -->
+    <section class="menu-list">
+
+      <div class="menu-item" *ngFor="let item of menu">
+
+        <div>
+          <h4>{{ item.name }}</h4>
+          <p>₹{{ item.price }}</p>
+        </div>
+
+        <div class="qty-controls">
+          <button (click)="decrement(item)">−</button>
+          <span>{{ item.qty }}</span>
+          <button (click)="increment(item)">+</button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CART -->
+    <aside class="cart">
+
+      <h3>🛒 Cart</h3>
+
+      <div *ngIf="cartItems.length === 0" class="empty">
+        No items added
+      </div>
+
+      <div *ngFor="let item of cartItems" class="cart-row">
+        <span>{{ item.name }} x {{ item.qty }}</span>
+        <span>₹{{ item.qty * item.price }}</span>
+      </div>
+
+      <hr />
+
+      <div class="total">
+        <strong>Total:</strong>
+        <strong>₹{{ total }}</strong>
+      </div>
+
+      <button
+        class="checkout-btn"
+        [disabled]="cartItems.length === 0"
+        (click)="placeOrder()"
+      >
+        Place Order
+      </button>
+
+    </aside>
+
+  </div>
+
+</div>
+
+<!-- ORDER SUCCESS POPUP -->
+<div class="modal-backdrop" *ngIf="orderPlaced">
+
+  <div class="modal">
+
+    <h2>🎉 Order Placed!</h2>
+    <p>Your food is on the way.</p>
+
+    <button (click)="closePopup()">Continue</button>
+
+  </div>
+
+</div>

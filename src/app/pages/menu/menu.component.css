@@ -1,0 +1,143 @@
+.menu-page {
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.menu-header {
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* MENU LIST */
+
+.menu-list {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-controls button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #ff5722;
+  color: white;
+  cursor: pointer;
+}
+
+.qty-controls span {
+  width: 24px;
+  text-align: center;
+}
+
+/* CART */
+
+.cart {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  height: fit-content;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0;
+}
+
+.empty {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #ff5722;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkout-btn:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+
+/* MODAL */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 14px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal button {
+  margin-top: 1.5rem;
+  background: #ff5722;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
