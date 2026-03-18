@@ -11,5 +11,4 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'foodify-ui';
   protected readonly window = window;
-  protected auth = inject(AuthService);
 }
