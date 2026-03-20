@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.restaurantId = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.restaurantService.getRestaurant(this.restaurantId)
+    this.restaurantService.getMenu(this.restaurantId)
       .subscribe(response => {
 
         // take menu from backend

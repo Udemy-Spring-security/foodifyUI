@@ -1,6 +1,6 @@
 import { MenuItem } from "./MenuItem";
 
-export interface Restaurant {
+export interface MenuResponse {
   id: number;
   name: string;
   cuisine: string;
