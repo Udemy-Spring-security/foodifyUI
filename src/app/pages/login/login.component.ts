@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,14 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor(private auth: AuthService) { }
+
   onLogin() {
-    // Later we will redirect to Auth0 / Keycloak here
-    console.log('Login clicked');
+
+    this.auth.loginWithRedirect({
+      appState: {
+        target: '/restaurants'
+      }
+    });
   }
 }
