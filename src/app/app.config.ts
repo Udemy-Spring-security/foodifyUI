@@ -1,14 +1,46 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withRouterConfig } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideAuth0 } from '@auth0/auth0-angular';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
+
+function initKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8443',
+        realm: 'foodify',
+        clientId: 'foodify_ui',
+      },
+      initOptions: {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+           window.location.origin + '/silent-check-sso.html', 
+        checkLoginIframe: false,      // ✅ disables the iframe that causes the warning
+        pkceMethod: 'S256',
+      },
+      enableBearerInterceptor: true,
+      bearerPrefix: 'Bearer',
+      bearerExcludedUrls: ['/assets'],
+    });
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideHttpClient()
-  ]
+     provideRouter(routes),
+     provideHttpClient(withInterceptorsFromDi()),  
+    KeycloakService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initKeycloak,
+      deps: [KeycloakService],
+      multi: true,
+    },
+  ],
 };
