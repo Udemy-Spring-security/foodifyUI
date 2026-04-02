@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +11,17 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'foodify-ui';
   protected readonly window = window;
-  protected auth = inject(AuthService);
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) { }
+
+ngOnInit() {
+    const isLoggedIn = this.auth.isLoggedIn();
+    if (isLoggedIn) {
+      this.router.navigate(['/restaurants']);  // ← already logged in
+    } else {
+      this.router.navigate(['/login']);        // ← show login page
+    }
+  }
 }

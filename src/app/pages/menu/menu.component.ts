@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
+import { RestaurantService } from '../../services/restaurant.service';
 
 interface MenuItem {
   id: number;
@@ -17,50 +18,56 @@ interface MenuItem {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
   restaurantId!: number;
-
+  menu: MenuItem[] = [];
   orderPlaced = false;
 
-  menu: MenuItem[] = [
-    { id: 1, name: 'Paneer Tikka', price: 150, qty: 0 },
-    { id: 2, name: 'Butter Naan', price: 50, qty: 0 },
-    { id: 3, name: 'Dal Fry', price: 120, qty: 0 },
-    { id: 4, name: 'Veg Biryani', price: 180, qty: 0 }
-  ];
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService
+  ) {}
 
-  constructor(private route: ActivatedRoute) {
+  ngOnInit() {
     this.restaurantId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.restaurantService.getMenu(this.restaurantId)
+      .subscribe(response => {
+
+        // take menu from backend
+        this.menu = response.menu.map((item: any) => ({
+          ...item,
+          qty: 0 // initialize qty for UI
+        }));
+
+      });
   }
 
   increment(item: MenuItem) {
-    item.qty++;
+    item.qty!++;
   }
 
   decrement(item: MenuItem) {
-    if (item.qty > 0) {
-      item.qty--;
+    if (item.qty! > 0) {
+      item.qty!--;
     }
   }
 
   get cartItems() {
-    return this.menu.filter(i => i.qty > 0);
+    return this.menu.filter(i => i.qty! > 0);
   }
 
   get total() {
     return this.cartItems.reduce(
-      (sum, item) => sum + item.qty * item.price,
+      (sum, item) => sum + item.qty! * item.price,
       0
     );
   }
 
   placeOrder() {
-    // simulate order success
     this.orderPlaced = true;
-
-    // reset cart + quantities
-    this.menu.forEach(item => (item.qty = 0));
+    this.menu.forEach(item => item.qty = 0);
   }
 
   closePopup() {

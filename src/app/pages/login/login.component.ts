@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,9 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor(private authService: AuthService) {}
+  
   onLogin() {
-    // Later we will redirect to Auth0 / Keycloak here
-    console.log('Login clicked');
+   this.authService.login();
   }
 }
