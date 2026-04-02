@@ -4,9 +4,26 @@
     <h1 class="brand">🍔 Foodify</h1>
     <p class="subtitle">Sign in to order delicious food</p>
 
+    <!-- Normal login -->
     <button class="login-btn" (click)="onLogin()">
-      Login
-    </button> 
+      Login with Email
+    </button>
+
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+    <!-- Google Login -->
+    <button class="social-btn google" (click)="loginWithGoogle()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+      Continue with Google
+    </button>
+
+    <!-- Github Login -->
+    <button class="social-btn github" (click)="loginWithGithub()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+      Continue with GitHub
+    </button>
 
     <p class="footer-text">
       By continuing, you agree to our

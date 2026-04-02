@@ -9,9 +9,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService) {}
-  
+  constructor(private authService: AuthService) { }
+
   onLogin() {
-   this.authService.login();
+    this.authService.login();
+  }
+
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
+  }
+
+  loginWithGithub() {
+    this.authService.loginWithGithub();
   }
 }

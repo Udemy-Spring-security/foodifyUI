@@ -37,6 +37,21 @@ export class AuthService {
     });
   }
 
+   // Direct Google login — skips Keycloak page entirely
+  loginWithGoogle() {
+    this.keycloak.login({
+      redirectUri: window.location.origin + '/restaurants',
+      idpHint: 'google',     // ← matches Identity Provider alias in Keycloak
+    });
+  }
+
+  loginWithGithub() {
+  this.keycloak.login({
+    redirectUri: window.location.origin + '/restaurants',
+    idpHint: 'github',   // ← must match the alias in Keycloak Identity Providers
+  });
+}
+
   logout() {
     this.keycloak.logout(window.location.origin);
   }
