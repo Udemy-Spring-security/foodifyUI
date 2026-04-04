@@ -76,3 +76,94 @@
 .meta button:hover {
   background: #e64a19;
 }
+.delete-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #d9363e;
+}
+
+.restaurants-grid {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.8rem;
+}
+
+/* CARD */
+.restaurant-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+/* IMAGE */
+.restaurant-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+/* BODY */
+.card-body {
+  padding: 1rem;
+}
+
+/* CUISINE */
+.cuisine {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+/* ROW */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BUTTON GROUP */
+.meta-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* COMMON BUTTON */
+.meta button {
+  background: #ff5722;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.meta button:hover {
+  background: #e64a19;
+}
+
+/* DELETE */
+.delete-btn {
+  background: #ff4d4f !important;
+}
+
+.delete-btn:hover {
+  background: #d9363e !important;
+}

@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
         redirect_uri: window.location.origin,
         // ✅ Must exactly match your Auth0 API Identifier
         audience: "http://localhost:8081/orders",
-        scope: "openid profile email order:read order:write"
+        scope: "openid profile email order:read order:write, restaurant:delete"
       },
 
       httpInterceptor: {

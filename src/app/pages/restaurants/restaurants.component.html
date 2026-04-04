@@ -18,9 +18,18 @@
 
         <div class="meta">
           <span class="rating">⭐ {{ restaurant.rating }}</span>
+           <div class="meta-buttons">
           <button (click)="viewMenu(restaurant.id)">
             View Menu
           </button>
+
+        <button
+        *ngIf="isAdmin| async"
+          class="delete-btn"
+          (click)="deleteRestaurant(restaurant.id)">
+          Delete
+        </button>
+        </div>
         </div>
       </div>
 
