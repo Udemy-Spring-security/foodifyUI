@@ -76,3 +76,27 @@
 .meta button:hover {
   background: #e64a19;
 }
+
+.meta button {
+  background: #ff5722;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.meta button:hover {
+  background: #e64a19;
+}
+
+/* DELETE */
+.delete-btn {
+  background: #ff4d4f !important;
+}
+
+.delete-btn:hover {
+  background: #d9363e !important;
+}

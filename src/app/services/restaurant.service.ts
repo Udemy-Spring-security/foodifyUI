@@ -19,4 +19,12 @@ export class RestaurantService {
    getMenu(id: number): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${this.apiUrl}/${id}`);
   }
+
+  deleteRestaurant(id: number): Observable<boolean> {
+
+    return this.http.delete<boolean>(
+      `${this.apiUrl}/${id}`
+    );
+
+  }
 }
