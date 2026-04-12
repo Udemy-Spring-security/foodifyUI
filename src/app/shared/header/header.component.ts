@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
-import { KeycloakService } from 'keycloak-angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +13,11 @@ import { KeycloakService } from 'keycloak-angular';
 export class HeaderComponent {
 
   constructor(private router: Router,
-    private keycloak: KeycloakService
+    private authService: AuthService
   ) { }
 
   logout() {
-    // Later we will call Auth0 / Keycloak logout here
-    console.log('Logging out...');
-    this.keycloak.logout(window.location.origin + '/login');
+    this.authService.logout();
   }
 
 }
