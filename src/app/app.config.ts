@@ -14,10 +14,7 @@ function initKeycloak(keycloak: KeycloakService) {
         clientId: 'foodify_ui',
       },
       initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-           window.location.origin + '/silent-check-sso.html', 
-        checkLoginIframe: false,      // ✅ disables the iframe that causes the warning
+        checkLoginIframe: false,
         pkceMethod: 'S256',
       },
       enableBearerInterceptor: true,
